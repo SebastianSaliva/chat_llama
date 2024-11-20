@@ -1,0 +1,77 @@
+What an interesting question!
+
+Yes, it is possible to download the Llama3.1:70b manifest onto a USB 
+drive, rent a Linux cloud server with at least 32.3 GiB of RAM, and pipe 
+input and output into it to run the version remotely, even if your local 
+system doesn't have enough memory.
+
+Here's a step-by-step outline of how you can achieve this:
+
+**Step 1: Download the Llama3.1:70b manifest onto a USB drive**
+
+* Make sure you have a USB drive with sufficient storage capacity (at 
+least 16-32 GiB, depending on the size of the manifest).
+* You'll need to download the Llama3.1:70b manifest from the Hugging Face 
+model hub or another source.
+* Save the downloaded manifest file onto the USB drive.
+
+**Step 2: Rent a Linux cloud server with at least 32.3 GiB of RAM**
+
+* Choose a cloud provider like Google Cloud, AWS, Azure, or DigitalOcean.
+* Select a suitable instance type that meets your requirements:
+	+ CPU: At least 1-2 vCPUs (depending on the task's computational intensi
+intensity).
+	+ Memory: At least 32.3 GiB of RAM (to accommodate the Llama model and o
+other processes).
+	+ Storage: Make sure the instance has enough storage capacity to hold the 
+manifest file.
+* Create a new instance with the chosen configuration.
+
+**Step 3: Configure the Linux cloud server**
+
+* SSH into your newly created instance (you can use PuTTY on Windows or 
+the built-in terminal on macOS/Linux).
+* Update the system and install necessary packages:
+	+ `sudo apt-get update` (or equivalent for other distributions)
+	+ Install Python, pip, and any other dependencies required by the Llama 
+model
+* Make sure to have a suitable version of Python installed (e.g., Python 
+3.8 or later).
+
+**Step 4: Mount the USB drive on the Linux cloud server**
+
+* Connect the USB drive to your cloud instance's virtual machine.
+* Identify the device name using `lsblk` or `fdisk -l`.
+* Create a mount point and mount the USB drive:
+	+ `sudo mkdir /mnt/usb`
+	+ `sudo mount /dev/sdb1 /mnt/usb`
+
+**Step 5: Transfer the Llama manifest file to the Linux cloud server**
+
+* Copy the downloaded manifest file from the USB drive onto the Linux 
+cloud server using SSH commands (e.g., `scp`, `rsync`).
+* Alternatively, you can transfer files between instances within a cloud 
+provider.
+
+**Step 6: Pipe input and output into the Llama model running on the Linux 
+cloud server**
+
+* Use tools like `socat` or `netcat` to establish a connection between 
+your local system (or another remote instance) and the Linux cloud server.
+* Run the Llama model on the cloud server using the manifest file as an 
+argument, piping input/output from/to your local system:
+	+ `python -m transformers.Llama3.run --manifest /mnt/usb/lama_manifest.j
+/mnt/usb/lama_manifest.json ...`
+
+Please note that you'll need to adapt this outline according to your 
+specific requirements and environment.
+
+Some potential considerations:
+
+* Make sure you have sufficient bandwidth for transferring the manifest 
+file between your systems.
+* Be mindful of any rate limits or usage policies within cloud providers.
+* If you're not familiar with Linux commands, consider seeking help from a 
+colleague or searching online resources.
+
+Good luck!
